@@ -11,10 +11,8 @@ handle_error() {
     exit 1
 }
 
-KOPIA_CHECK_FOR_UPDATES=false
-
 # Check if required commands are available
-commands=("gh" "kopia")
+commands=("gh" "marmalade" "age")
 for cmd in "${commands[@]}"; do
     if ! command -v $cmd &> /dev/null; then
         handle_error "$cmd is not installed"
@@ -22,17 +20,9 @@ for cmd in "${commands[@]}"; do
 done
 
 # Check if required environment variables are set
-if [ -z "$GITHUB_TOKEN" ] || [ -z "$GITHUB_USERNAME" ] || [ -z "$KOPIA_CONFIG" ] ; then
+if [ -z "$GITHUB_TOKEN" ] || [ -z "$GITHUB_USERNAME" ] || [ -z "$AGE_IDENTITY" ] ; then
     handle_error "Missing required environment variables"
 fi
-
-log "Connect kopia"
-kopia repository connect from-config --token $KOPIA_CONFIG || handle_error "Could not connect kopia"
-kopia repository status || handle_error "Could not get kopia status"
-
-log "kopia maintenance"
-kopia maintenance set --owner=me
-kopia maintenance run
 
 git config --global credential.helper store
 touch ~/.git-credentials
@@ -58,8 +48,15 @@ log "Repositories loaded!"
 
 cd ..
 
-log "Backing up with kopia"
-kopia snapshot create repos
+log "Compressing and encrypting..."
+
+tar -cJf archive.tar.xz --options xz:compression-level=9 repos/
+echo "$AGE_IDENTITY" > age.id
+age -i age.id -e -o archive.tar.xz.age archive.tar.xz
+
+log "Backing up with marmalade"
+
+marmalade backup -path archive.tar.xz.age
 
 log "Backup process completed successfully!"
 
