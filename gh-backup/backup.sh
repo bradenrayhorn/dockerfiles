@@ -52,13 +52,13 @@ cd ..
 
 log "Compressing and encrypting..."
 
-tar -czf archive.tar.gz repos
+tar -cf - repos/ | xz -9 > archive.tar.xz
 echo "$AGE_IDENTITY" > age.id
-age -i age.id -e -o archive.tar.gz.age archive.tar.gz
+age -i age.id -e -o archive.tar.xz.age archive.tar.xz
 
 log "Backing up with marmalade"
 
-marmalade backup -path archive.tar.gz.age
+marmalade backup -path archive.tar.xz.age
 
 log "Backup process completed successfully!"
 
