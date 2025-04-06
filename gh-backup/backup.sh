@@ -52,7 +52,7 @@ cd ..
 
 log "Compressing and encrypting..."
 
-tar -cJf archive.tar.xz --options xz:compression-level=9 repos/
+tar -czvf archive.tar.gz repos
 echo "$AGE_IDENTITY" > age.id
 age -i age.id -e -o archive.tar.xz.age archive.tar.xz
 
