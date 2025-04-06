@@ -58,7 +58,7 @@ age -i age.id -e -o archive.tar.gz.age archive.tar.gz
 
 log "Backing up with marmalade"
 
-marmalade backup -path archive.tar.xz.age
+marmalade backup -path archive.tar.gz.age
 
 log "Backup process completed successfully!"
 
