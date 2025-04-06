@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    paths: ['kanidm-backup/**']
+    paths: ['single-file-backup/**']
     branches:
       - main
 
@@ -12,4 +12,4 @@ jobs:
     permissions:
       packages: write
     with:
-      path: kanidm-backup
+      path: single-file-backup
