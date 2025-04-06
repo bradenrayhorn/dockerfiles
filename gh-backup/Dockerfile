@@ -5,7 +5,7 @@ RUN CGO_ENABLED=0 go install filippo.io/age/cmd/...@v1.2.1
 
 FROM alpine:3@sha256:1e42bbe2508154c9126d48c2b8a75420c3544343bf86fd041fb7527e017a4b4a
 
-RUN apk add --no-cache bash github-cli
+RUN apk add --no-cache bash github-cli tar
 
 COPY --from=goinstaller /go/bin/marmalade /usr/bin/marmalade
 COPY --from=goinstaller /go/bin/age /usr/bin/age

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Function to log with timestamp
 log() {
     echo "[$(date -u '+%Y-%m-%d %H:%M:%S UTC')] $1"
