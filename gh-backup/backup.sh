@@ -52,9 +52,9 @@ cd ..
 
 log "Compressing and encrypting..."
 
-tar -czvf archive.tar.gz repos
+tar -czf archive.tar.gz repos
 echo "$AGE_IDENTITY" > age.id
-age -i age.id -e -o archive.tar.xz.age archive.tar.xz
+age -i age.id -e -o archive.tar.gz.age archive.tar.gz
 
 log "Backing up with marmalade"
 
