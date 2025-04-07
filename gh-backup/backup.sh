@@ -22,7 +22,7 @@ for cmd in "${commands[@]}"; do
 done
 
 # Check if required environment variables are set
-if [ -z "$GITHUB_TOKEN" ] || [ -z "$GITHUB_USERNAME" ] || [ -z "$AGE_IDENTITY" ] ; then
+if [ -z "$GITHUB_TOKEN" ] || [ -z "$GITHUB_USERNAME" ]; then
     handle_error "Missing required environment variables"
 fi
 
@@ -56,7 +56,7 @@ tar -cf - repos/ | xz -9 > archive.tar.xz
 
 log "Backing up with marmalade"
 
-marmalade backup -i "$AGE_IDENTITY" -f archive.tar.xz
+marmalade backup -f archive.tar.xz
 
 log "Backup process completed successfully!"
 

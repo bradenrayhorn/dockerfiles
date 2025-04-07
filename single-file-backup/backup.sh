@@ -18,7 +18,7 @@ if [ ${#matching_files[@]} -eq 1 ]; then
     tar -cf - archive | xz -9 > archive.tar.xz
 
     log "Backing up with marmalade"
-    marmalade backup -i "$AGE_IDENTITY" -f archive.tar.xz
+    marmalade backup -f archive.tar.xz
     log "Backup process completed successfully!"
 
     exit 0
