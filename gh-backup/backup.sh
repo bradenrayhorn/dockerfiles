@@ -14,7 +14,7 @@ handle_error() {
 }
 
 # Check if required commands are available
-commands=("gh" "marmalade" "age")
+commands=("gh" "marmalade")
 for cmd in "${commands[@]}"; do
     if ! command -v $cmd &> /dev/null; then
         handle_error "$cmd is not installed"
@@ -53,12 +53,10 @@ cd ..
 log "Compressing and encrypting..."
 
 tar -cf - repos/ | xz -9 > archive.tar.xz
-echo "$AGE_IDENTITY" > age.id
-age -i age.id -e -o archive.tar.xz.age archive.tar.xz
 
 log "Backing up with marmalade"
 
-marmalade backup -path archive.tar.xz.age
+marmalade backup -i "$AGE_IDENTITY" -f archive.tar.xz
 
 log "Backup process completed successfully!"
 

@@ -14,13 +14,11 @@ if [ ${#matching_files[@]} -eq 1 ]; then
     mkdir archive/
     cp $file archive/${matching_files[0]}
 
-    log "Compressing and encrypting..."
+    log "Compressing..."
     tar -cf - archive | xz -9 > archive.tar.xz
-    echo "$AGE_IDENTITY" > age.id
-    age -i age.id -e -o archive.tar.xz.age archive.tar.xz
 
     log "Backing up with marmalade"
-    marmalade backup -path archive.tar.xz.age
+    marmalade backup -i "$AGE_IDENTITY" -f archive.tar.xz
     log "Backup process completed successfully!"
 
     exit 0
