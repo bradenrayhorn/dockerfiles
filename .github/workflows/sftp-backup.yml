@@ -1,0 +1,15 @@
+name: Build
+
+on:
+  push:
+    paths: ['sftp-backup/**']
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: ./.github/workflows/_build.yml
+    permissions:
+      packages: write
+    with:
+      path: sftp-backup
