@@ -15,6 +15,9 @@ keyfile="$(mktemp -d)/key"
 echo "$SFTP_PRIVATE_KEY" > $keyfile
 chmod 600 $keyfile
 
+mkdir -p ~/.ssh
+ssh-keyscan -p $SFTP_PORT -H $SFTP_HOST >> ~/.ssh/known_hosts
+
 # copy all files to backup dir
 scp -i $keyfile -P $SFTP_PORT -r $SFTP_USERNAME@$SFTP_HOST:/ $backup_dir
 
