@@ -8,6 +8,7 @@ log() {
 
 # create working directories
 backup_dir="$(mktemp -d)"
+backup_dir_folder="archive"
 mkdir $backup_dir/$backup_dir_folder
 working_dir="$(mktemp -d)"
 
