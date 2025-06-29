@@ -8,8 +8,7 @@ log() {
 
 # create working directories
 backup_dir="$(mktemp -d)"
-backup_dir_folder=$backup_dir/archive
-mkdir $backup_dir_folder
+mkdir $backup_dir/$backup_dir_folder
 working_dir="$(mktemp -d)"
 
 # setup auth
@@ -21,7 +20,7 @@ mkdir -p ~/.ssh
 ssh-keyscan -p $SFTP_PORT -H $SFTP_HOST >> ~/.ssh/known_hosts
 
 # copy all files to backup folder
-scp -i $keyfile -P $SFTP_PORT -r $SFTP_USERNAME@$SFTP_HOST:/ $backup_dir_folder
+scp -i $keyfile -P $SFTP_PORT -r $SFTP_USERNAME@$SFTP_HOST:/ $backup_dir/$backup_dir_folder
 
 # compress and upload
 log "Compressing..."
