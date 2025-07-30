@@ -21,11 +21,11 @@
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
-      "groupName": "github-actions"
+      "groupName": "github actions"
     },
     {
       "matchDatasources": ["docker"],
-      "groupName": "docker"
+      "groupName": "docker base images"
     }
   ]
 }
