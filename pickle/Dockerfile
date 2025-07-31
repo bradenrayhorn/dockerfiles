@@ -1,6 +1,6 @@
 FROM golang:1.24-alpine@sha256:daae04ebad0c21149979cd8e9db38f565ecefd8547cf4a591240dc1972cf1399 AS goinstaller
 
-RUN CGO_ENABLED=0 go install github.com/bradenrayhorn/pickle/cmd/pickle@v0.20250723.0
+RUN CGO_ENABLED=0 go install github.com/bradenrayhorn/pickle/cmd/pickle@v2025.07.1
 
 FROM alpine:3@sha256:4bcff63911fcb4448bd4fdacec207030997caf25e9bea4045fa6c8c44de311d1
 
