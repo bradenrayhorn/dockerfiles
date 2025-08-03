@@ -1,0 +1,15 @@
+name: Build
+
+on:
+  push:
+    paths: ['actualbudget-backup/**']
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: ./.github/workflows/_build.yml
+    permissions:
+      packages: write
+    with:
+      path: actualbudget-backup
