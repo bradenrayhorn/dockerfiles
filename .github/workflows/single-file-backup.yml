@@ -1,4 +1,4 @@
-name: Build
+name: single-file-backup
 
 on:
   push:

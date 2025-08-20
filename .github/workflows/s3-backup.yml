@@ -1,4 +1,4 @@
-name: Build
+name: s3-backup
 
 on:
   push:

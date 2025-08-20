@@ -1,4 +1,4 @@
-name: Build
+name: sqlite-backup
 
 on:
   push:
