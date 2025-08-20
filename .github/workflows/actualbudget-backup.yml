@@ -1,4 +1,4 @@
-name: actualbudget
+name: actualbudget-backup
 
 on:
   push:
